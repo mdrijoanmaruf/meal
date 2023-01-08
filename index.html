@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Calculator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        text-align: center;
+        margin: 20px;
+      }
+      body {
+        background-color: antiquewhite;
+      }
+      form {
+        width: 90vw;
+        height: 150vh;
+        margin-left: 5vw;
+        border-radius: 10px;
+      }
+      input {
+        height: 30px;
+        margin-top: 20px;
+        width: 70vw;
+        margin-left: 10vw;
+        border: 2px solid blue;
+        border-radius: 5px;
+        padding: 5px;
+      }
+      button {
+        height: 46px;
+        width: 137px;
+        float: right;
+        margin-right: 9vw;
+        margin-top: 20px;
+        background: blue;
+        color: white;
+        border: 2px solid blue;
+        border-radius: 7px;
+      }
+      button:focus {
+        background-color: white;
+        color: blue;
+      }
+      .result {
+        margin-top: 100px;
+        margin-left: 10vw;
+        border: 2px solid green;
+        height: 20vh;
+        width: 70vw;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 20px;
+        text-align: center;
+      }
+      .container {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 150vw;
+        bottom: 10px;
+      }
+      a{
+        text-decoration: none;
+        font-size: 25px;
+      }
+      @media only screen and (max-width : 700px) {
+        .container{
+            top:575vw
+        }
+        a{
+            font-size: 20px;
+        }
+      }
+      @media only screen and (max-width : 1100px) {
+        .container{
+            top: 310vw;
+        }
+      }
+      @media only screen and (max-width : 900px) {
+        .container{
+            top: 575vw;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Meal Calculator</h1>
+    <form id="form">
+      <input type="number" id="rijoan" placeholder="Rijoan's Money : " /> <br />
+      <input type="number" id="sajib" placeholder="Sajib's Money : " /> <br />
+      <input type="number" id="salah" placeholder="Salah's Money : " /> <br />
+      <input type="number" id="mehedy" placeholder="Mehedy's Money : " /> <br />
+
+      <input type="number" id="meal_have" placeholder="Meal's Have : " /> <br />
+
+      <input type="number" id="rijoan-meal" step="0.5" placeholder="Rijoan's Meal : " />
+      <br />
+      <input type="number" id="sajib-meal" step="0.5" placeholder="Sajib's Meal : " />
+      <br />
+      <input type="number" id="salah-meal" step="0.5" placeholder="Salah's Meal : " />
+      <br />
+      <input type="number" id="mehedy-meal" step="0.5" placeholder="Mehedy's Meal : " />
+      <br />
+      <button>Submit</button>
+
+      <div id="result" class="result"></div>
+      <div id="r_rijoan" class="result"></div>
+      <div id="r_sajib" class="result"></div>
+      <div id="r_salah" class="result"></div>
+      <div id="r_mehedy" class="result"></div>
+    </form>
+    <div class="container">
+      <a href="https://www.facebook.com/md.rijoanmaruf">Created By : Md Rijoan Maruf</a>
+    </div>
+  </body>
+  <script>
+    let form = document.getElementById("form");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      let rijoan = document.getElementById("rijoan").value;
+      let sajib = document.getElementById("sajib").value;
+      let salah = document.getElementById("salah").value;
+      let mehedy = document.getElementById("mehedy").value;
+      rijoan = parseFloat(rijoan);
+      sajib = parseFloat(sajib);
+      salah = parseFloat(salah);
+      mehedy = parseFloat(mehedy);
+
+      let totaljoma = rijoan + sajib + salah + mehedy;
+      //jamel mokto
+
+      let meal_have = document.getElementById("meal_have").value;
+      meal_have = parseFloat(meal_have);
+
+      let rijoan_meal = document.getElementById("rijoan-meal").value;
+      let sajib_meal = document.getElementById("sajib-meal").value;
+      let salah_meal = document.getElementById("salah-meal").value;
+      let mehedy_meal = document.getElementById("mehedy-meal").value;
+      rijoan_meal = parseFloat(rijoan_meal).toFixed(1);
+      sajib_meal = parseFloat(sajib_meal).toFixed(1);
+      salah_meal = parseFloat(salah_meal).toFixed(1);
+      mehedy_meal = parseFloat(mehedy_meal).toFixed(1);
+
+      let total_cost = totaljoma - meal_have;
+      let total_meal = rijoan_meal + salah_meal + sajib_meal + mehedy_meal;
+      total_meal = parseFloat(total_meal).toFixed(1)
+      let meal_rate = total_cost / total_meal;
+      meal_rate = parseFloat(meal_rate).toFixed(3);
+
+      let cost_rijoan = meal_rate * rijoan_meal;
+      rijoan_meal = parseFloat(rijoan_meal).toFixed(3);
+      let cost_sajib = meal_rate * sajib_meal;
+      sajib_meal = parseFloat(sajib_meal).toFixed(3);
+      let cost_salah = meal_rate * salah_meal;
+      salah_meal = parseFloat(sajib_meal).toFixed(3);
+      let cost_mehedy = meal_rate * mehedy_meal;
+      mehedy_meal = parseFloat(mehedy_meal).toFixed(3);
+
+      let final_cost_rijoan = rijoan - cost_rijoan;
+      final_cost_rijoan = parseFloat(final_cost_rijoan).toFixed(3);
+      let final_cost_sajib = sajib - cost_sajib;
+      final_cost_sajib = parseFloat(final_cost_sajib).toFixed(3);
+      let final_cost_salah = salah - cost_salah;
+      final_cost_salah = parseFloat(final_cost_salah).toFixed(3);
+      let final_cost_mehedy = mehedy - cost_mehedy;
+      final_cost_mehedy = parseFloat(final_cost_mehedy).toFixed(3);
+
+      document.getElementById("result").innerHTML = `
+        Total Taka Joma Hoise    : ${totaljoma} <br>
+        Total Meal Of This Month : ${total_meal} <br>
+        Meal Rate                : ${meal_rate}
+        `;
+      document.getElementById("r_rijoan").innerHTML = `
+        Rijoan's Joma Taka     : ${rijoan} <br>
+        Rijaon's Total Meal    : ${rijoan_meal} <br>
+        Rijoan's Total Khoroch : ${cost_rijoan} <br>
+        Rijaon Taka Pabe       : ${final_cost_rijoan}
+        `;
+      document.getElementById("r_sajib").innerHTML = `
+        Sajib's Joma Taka     : ${sajib} <br>
+        Sajib's Total Meal    : ${sajib_meal} <br>
+        Sajib's Total Khoroch : ${cost_sajib} <br>
+        Sajib Taka Pabe       : ${final_cost_sajib} 
+        `;
+      document.getElementById("r_salah").innerHTML = `
+        Salah's Joma Taka     : ${salah} <br>
+        Salah's Total Meal    : ${salah_meal} <br>
+        Salah's Total Khoroch : ${cost_salah} <br>
+        Salah Taka Pabe       : ${final_cost_salah}
+        `;
+      document.getElementById("r_mehedy").innerHTML = `
+        Mehedy's Joma Taka     : ${mehedy} <br>
+        Mehedy's Total Meal    : ${mehedy_meal} <br>
+        Mehedy's Total Khoroch : ${cost_mehedy} <br>
+        Mehedy Taka Pabe       : ${final_cost_mehedy}
+        `;
+    });
+  </script>
+</html>
