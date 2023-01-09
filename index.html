@@ -136,7 +136,7 @@
       mehedy = parseFloat(mehedy);
 
       let totaljoma = rijoan + sajib + salah + mehedy;
-      //jamel mokto
+      
 
       let meal_have = document.getElementById("meal_have").value;
       meal_have = parseFloat(meal_have);
@@ -145,13 +145,13 @@
       let sajib_meal = document.getElementById("sajib-meal").value;
       let salah_meal = document.getElementById("salah-meal").value;
       let mehedy_meal = document.getElementById("mehedy-meal").value;
-      rijoan_meal = parseFloat(rijoan_meal).toFixed(1);
-      sajib_meal = parseFloat(sajib_meal).toFixed(1);
-      salah_meal = parseFloat(salah_meal).toFixed(1);
-      mehedy_meal = parseFloat(mehedy_meal).toFixed(1);
+      rijoan_meal = parseFloat(rijoan_meal)
+      sajib_meal = parseFloat(sajib_meal)
+      salah_meal = parseFloat(salah_meal)
+      mehedy_meal = parseFloat(mehedy_meal)
 
       let total_cost = totaljoma - meal_have;
-      let total_meal = rijoan_meal + salah_meal + sajib_meal + mehedy_meal;
+      let total_meal = (rijoan_meal + salah_meal + sajib_meal + mehedy_meal);
       total_meal = parseFloat(total_meal).toFixed(1)
       let meal_rate = total_cost / total_meal;
       meal_rate = parseFloat(meal_rate).toFixed(3);
@@ -176,6 +176,7 @@
 
       document.getElementById("result").innerHTML = `
         Total Taka Joma Hoise    : ${totaljoma} <br>
+        Total Taka Khoroch Hoise : ${total_cost} <br>
         Total Meal Of This Month : ${total_meal} <br>
         Meal Rate                : ${meal_rate}
         `;
@@ -204,5 +205,6 @@
         Mehedy Taka Pabe       : ${final_cost_mehedy}
         `;
     });
+
   </script>
 </html>
